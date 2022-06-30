@@ -72,10 +72,13 @@ public class GUI {
 		lblNewLabel_2_1.setBounds(274, 119, 61, 16);
 		frame.getContentPane().add(lblNewLabel_2_1);
 		
-		JLabel lblNewLabel_3 = new JLabel("Your bmi");
-		lblNewLabel_3.setBounds(75, 168, 251, 16);
+		JLabel lblNewLabel_3 = new JLabel("Your bmi is");
+		lblNewLabel_3.setBounds(75, 150, 251, 16);
 		frame.getContentPane().add(lblNewLabel_3);
 	
+		JLabel lblNewLabel_4 = new JLabel("The result is ");
+		lblNewLabel_4.setBounds(74, 175, 209, 15);
+		frame.getContentPane().add(lblNewLabel_4);
 		
 		JButton btnNewButton = new JButton("計算BMI");
 		btnNewButton.addMouseListener(new MouseAdapter() {
@@ -85,7 +88,22 @@ public class GUI {
 				double w = Double.parseDouble(textField_1.getText());
 				double bmi = w/Math.pow((h/100), 2);
 				
-				lblNewLabel_3.setText(Double.toString(bmi));
+				lblNewLabel_3.setText("Your bmi is "+Double.toString(bmi));
+				
+				//以下yushi加的
+				String message1 = "The result is normal";
+				String message2 = "The result is overweight";
+				String message3 = "The result is underweight";
+				
+				if(bmi<18) {
+					lblNewLabel_4.setText(message3);
+				}
+				else if(bmi>=18.5 && bmi<24.0) {
+					lblNewLabel_4.setText(message1);
+				}
+				else if(bmi>=24) {
+					lblNewLabel_4.setText(message2);
+				}
 			}
 		});
 		btnNewButton.setBounds(127, 210, 187, 26);
